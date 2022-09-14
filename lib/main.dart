@@ -61,9 +61,6 @@ class _MyAppState extends State<MyApp> {
     await Provider.of<HomeViewModel>(context, listen: false).initLocale();
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

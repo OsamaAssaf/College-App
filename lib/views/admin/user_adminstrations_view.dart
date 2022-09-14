@@ -19,10 +19,9 @@ class AdminConfigurationsView extends StatelessWidget {
       appBar: Components.commonAppBar(
         roleChosen == 0
             ? localization!.studentsConfiguration
-            : roleChosen == 0
+            : roleChosen == 1
                 ? localization!.teachersConfiguration
                 : localization!.adminsConfiguration,
-        // backgroundColor: mainColor,
       ),
       body: SingleChildScrollView(
         child: Column(

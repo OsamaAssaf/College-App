@@ -97,7 +97,8 @@ class GetSubjects extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 4.0),
                           child: Text('|'),
                         ),
-                        Text(data[index]['subjectName']),
+                        Text(
+                            "${data[index]['subjectName'].toString()[0].toUpperCase()}${data[index]['subjectName'].toString().substring(1).toLowerCase()}"),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 4.0),
                           child: Text('|'),
@@ -114,6 +115,34 @@ class GetSubjects extends StatelessWidget {
                       Text(data[index]['classDays']),
                       Text('${data[index]['startTime']} - ${data[index]['endTime']}'),
                     ],
+                  ),
+                  trailing: InkWell(
+                    onTap: () {
+                      showDialog(context: context, builder: (ctx){
+                        return AlertDialog(
+                          title: Text(localization!.areYouSure),
+                          content: Text(data[index]['subjectName'].toString()),
+                          actions: [
+                            OutlinedButton(onPressed: (){
+                              Navigator.pop(ctx);
+                            }, child: Text(localization!.cancel),),
+                            ElevatedButton(onPressed: ()async{
+                              bool deleteResult = await _viewModel.deleteSubject(data[index]['subjectID'].toString(), majorKey);
+                              if(deleteResult == true){
+                                Components.showSuccessToast(localization!.subjectDeleted);
+                                Navigator.pop(ctx);
+                                return;
+                              }if(deleteResult == false){
+                                Components.showSuccessToast(localization!.subjectDeleted);
+                                Navigator.pop(ctx);
+                                return;
+                              }
+                            }, child: Text(localization!.delete)),
+                          ],
+                        );
+                      },);
+                    },
+                    child:  Icon(Icons.delete_forever,color: CustomColors.redColor,),
                   ),
                 );
               },

@@ -54,7 +54,7 @@ class LoginViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  int? _role;
+  int? _role = 2;
 
   int? get role => _role;
 

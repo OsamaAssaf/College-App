@@ -11,7 +11,7 @@ import '../../view_models/common/calendar_view_model.dart';
 import '../../view_models/login/login_view_model.dart';
 import '../common/calendar_view.dart';
 import 'add_subject_view.dart';
-import 'admin_configurations_view.dart';
+import 'user_adminstrations_view.dart';
 import 'end_semester_view.dart';
 import 'subjects_list_view.dart';
 

@@ -13,7 +13,7 @@ import '../../res/widgets/grid_card.dart';
 import '../../view_models/common/home_view_model.dart';
 import '../../view_models/login/login_view_model.dart';
 import 'about_view.dart';
-import '../admin/admin_configurations_view.dart';
+import '../admin/user_adminstrations_view.dart';
 import '../admin/admin_view.dart';
 import 'profile_view.dart';
 import '../student/student_view.dart';

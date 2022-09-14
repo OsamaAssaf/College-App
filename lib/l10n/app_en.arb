@@ -97,6 +97,7 @@
   "add": "Add",
   "update": "Update",
   "cancel": "Cancel",
+  "delete": "Delete",
   "next": "Next",
   "previous": "Previous",
   "done": "Done",
@@ -159,5 +160,7 @@
 
   "waitABit": "Please wait a bit\nLoading...",
   "map": "Map",
-  "edit": "Edit"
+  "edit": "Edit",
+
+  "subjectDeleted": "Subject deleted"
 }
