@@ -188,8 +188,7 @@ class HomeView extends StatelessWidget {
                   title: Text(localization.map),
                   leading: const Icon(Icons.map_rounded),
                   onTap: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) =>  ShowMapView()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => ShowMapView()));
                   },
                 ),
                 const Divider(),
