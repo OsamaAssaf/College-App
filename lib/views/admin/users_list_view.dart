@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../res/colors.dart';
@@ -74,7 +73,7 @@ class _UsersListViewState extends State<UsersListView> {
                 onTap: () {
                   String majorKey = Components.majorsCode[majors[index]];
 
-                  showMaterialModalBottomSheet(
+                  showModalBottomSheet(
                     context: context,
                     builder: (ctx) {
                       return GetUsers(localization, widget.roleChosen, majorKey, collId);
@@ -127,7 +126,11 @@ class GetUsers extends StatelessWidget {
           }
           if (snapshot.hasData) {
             if (snapshot.data!.size == 0) {
-              return Center(child: Text(emptyMajorText,style: TextStyle(color: CustomColors.primaryTextColor),));
+              return Center(
+                  child: Text(
+                emptyMajorText,
+                style: TextStyle(color: CustomColors.primaryTextColor),
+              ));
             }
             List<QueryDocumentSnapshot<Object?>> data = snapshot.data!.docs;
             String? currentUserEmail = Provider.of<LoginViewModel>(context).user!.email;

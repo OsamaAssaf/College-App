@@ -4,11 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../res/colors.dart';
-import '../../res/components.dart';
-
-class ShowMapViewModel{
-
+class ShowMapViewModel {
   Future<void> pickImage(BuildContext context) async {
     ImageSource? imageSource = ImageSource.gallery;
 
@@ -30,17 +26,15 @@ class ShowMapViewModel{
     }
   }
 
-  Future<String?> getMapImageUrl()async{
+  Future<String?> getMapImageUrl() async {
     Reference firebaseStorageRef = FirebaseStorage.instance.ref().child(path);
     String? url;
     url = await firebaseStorageRef.getDownloadURL().then((value) async {
       return value;
     });
-    if(url != null){
+    if (url != null) {
       return url;
     }
     return '';
-
   }
-
 }

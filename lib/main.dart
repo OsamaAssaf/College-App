@@ -73,6 +73,7 @@ class _MyAppState extends State<MyApp> {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           theme: ThemeData(
+            useMaterial3: false,
             textTheme: GoogleFonts.nunitoTextTheme(
               Theme.of(context).textTheme,
             ),

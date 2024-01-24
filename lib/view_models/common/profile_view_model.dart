@@ -82,7 +82,9 @@ class ProfileViewModel {
         Components.errorDialog(context, e.toString().split('. ')[1]);
       }
     } catch (e) {
-      Components.errorDialog(context, e.toString().split('. ')[1]);
+      if (context.mounted) {
+        Components.errorDialog(context, e.toString().split('. ')[1]);
+      }
     }
   }
 }

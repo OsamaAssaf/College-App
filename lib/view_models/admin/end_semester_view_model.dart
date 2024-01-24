@@ -48,24 +48,27 @@ class EndSemesterViewModel {
             List<double> studentResults = [];
             for (var subject in res2) {
               if (subject.data()['result'] == '-') {
-                showDialog(
-                    context: context,
-                    builder: (ctx) => AlertDialog(
-                          backgroundColor: CustomColors.cardColor,
-                          content: Text(
-                            localization!.ensureGradesCalculated,
-                            style: TextStyle(
-                              color: CustomColors.primaryTextColor,
+                if (context.mounted) {
+                  showDialog(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                            backgroundColor: CustomColors.cardColor,
+                            content: Text(
+                              localization!.ensureGradesCalculated,
+                              style: TextStyle(
+                                color: CustomColors.primaryTextColor,
+                              ),
                             ),
-                          ),
-                          actions: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text(localization.ok)),
-                          ],
-                        ));
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(localization.ok)),
+                            ],
+                          ));
+                }
+
                 throw 'error';
               }
               studentResults.add(double.parse(subject.data()['result']));

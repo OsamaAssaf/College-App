@@ -118,23 +118,26 @@ class _EndSemesterViewState extends State<EndSemesterView> {
                         });
                     if (isPasswordTrue == true) {
                       try {
-                        showDialog(
-                            context: context,
-                            builder: (ctx) {
-                              return AlertDialog(
-                                content: SingleChildScrollView(
-                                  child: Column(
-                                    children: [
-                                      Text(localization.mayTakeTimeDoNotClose),
-                                      const SizedBox(
-                                        height: 32.0,
-                                      ),
-                                      const LinearProgressIndicator()
-                                    ],
+                        if (context.mounted) {
+                          showDialog(
+                              context: context,
+                              builder: (ctx) {
+                                return AlertDialog(
+                                  content: SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        Text(localization.mayTakeTimeDoNotClose),
+                                        const SizedBox(
+                                          height: 32.0,
+                                        ),
+                                        const LinearProgressIndicator()
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              );
-                            });
+                                );
+                              });
+                        }
+
                         if (!mounted) return;
                         await _viewModel.endCurrentSemester(context, localization);
                         if (!mounted) return;

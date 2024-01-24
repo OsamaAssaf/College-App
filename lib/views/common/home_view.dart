@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:college_app/res/colors.dart';
 import 'package:college_app/views/common/map_view.dart';
 import 'package:flutter/material.dart';

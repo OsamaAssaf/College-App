@@ -50,19 +50,32 @@ class _LoginViewState extends State<LoginView> {
         Provider.of<LoginViewModel>(context, listen: false).setIsLoading(true);
         await _loginViewModel.login(email, password, context);
       } on FirebaseAuthException catch (e) {
-        Provider.of<LoginViewModel>(context, listen: false).setIsLoading(false);
+        if (context.mounted) {
+          Provider.of<LoginViewModel>(context, listen: false).setIsLoading(false);
+        }
+
         if (e.code == 'user-not-found') {
-          Components.errorDialog(context, 'No user found for that email.');
+          if (context.mounted) {
+            Components.errorDialog(context, 'No user found for that email.');
+          }
         } else if (e.code == 'wrong-password') {
-          Components.errorDialog(context, 'Wrong password provided for that user.');
+          if (context.mounted) {
+            Components.errorDialog(context, 'Wrong password provided for that user.');
+          }
         } else if (e.code == 'network-request-failed') {
-          Components.errorDialog(context, 'No internet connection.');
+          if (context.mounted) {
+            Components.errorDialog(context, 'No internet connection.');
+          }
         } else {
-          Components.errorDialog(context, 'Check your internet.\nTry again later.');
+          if (context.mounted) {
+            Components.errorDialog(context, 'Check your internet.\nTry again later.');
+          }
         }
       } catch (_) {
-        Provider.of<LoginViewModel>(context, listen: false).setIsLoading(false);
-        Components.errorDialog(context, 'Check your internet.\nTry again later.');
+        if (context.mounted) {
+          Provider.of<LoginViewModel>(context, listen: false).setIsLoading(false);
+          Components.errorDialog(context, 'Check your internet.\nTry again later.');
+        }
       }
     }
   }

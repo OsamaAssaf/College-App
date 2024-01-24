@@ -43,7 +43,7 @@ class _SplashViewState extends State<SplashView> {
       body: EasySplashScreen(
         backgroundColor: CustomColors.canvasColor,
         logo: Image.asset('assets/images/app_icon.png'),
-        logoSize: 100.0,
+        logoWidth: 100.0,
         title: Text(
           'College App',
           style: TextStyle(

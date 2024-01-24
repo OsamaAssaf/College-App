@@ -4,7 +4,6 @@ import 'package:college_app/view_models/common/map_view_model.dart';
 import 'package:college_app/view_models/login/login_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class ShowMapView extends StatelessWidget {
@@ -17,14 +16,13 @@ class ShowMapView extends StatelessWidget {
     AppLocalizations? localization = AppLocalizations.of(context);
 
     int? role = Provider.of<LoginViewModel>(context).role;
-    if(role == 2){
+    if (role == 2) {
       actions.add(TextButton(
           onPressed: () {
             _viewModel.pickImage(context);
           },
           child: Text(localization!.edit)));
     }
-
 
     return Scaffold(
       appBar: Components.commonAppBar(localization!.map, actions: actions),

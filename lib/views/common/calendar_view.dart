@@ -147,7 +147,7 @@ class _CalendarViewState extends State<CalendarView> {
                                                                             .split('T')[0]),
                                                                         Padding(
                                                                           padding: const EdgeInsets
-                                                                                  .symmetric(
+                                                                              .symmetric(
                                                                               horizontal: 8.0),
                                                                           child: CircleAvatar(
                                                                             radius: 2,
@@ -216,8 +216,9 @@ class _CalendarViewState extends State<CalendarView> {
                                                                                 provider
                                                                                     .setDeleteEventLoading(
                                                                                         false);
-                                                                                if (!mounted)
+                                                                                if (!mounted) {
                                                                                   return;
+                                                                                }
                                                                                 Navigator.pop(ctx);
                                                                               },
                                                                         style: ButtonStyle(

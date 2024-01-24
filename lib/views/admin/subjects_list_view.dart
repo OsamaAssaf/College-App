@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -32,7 +31,7 @@ class SubjectsListView extends StatelessWidget {
                 onTap: () {
                   String majorKey = Components.majorsCode[majors[index]];
 
-                  showMaterialModalBottomSheet(
+                  showModalBottomSheet(
                     context: context,
                     builder: (ctx) {
                       return GetSubjects(localization, majorKey);
@@ -118,31 +117,49 @@ class GetSubjects extends StatelessWidget {
                   ),
                   trailing: InkWell(
                     onTap: () {
-                      showDialog(context: context, builder: (ctx){
-                        return AlertDialog(
-                          title: Text(localization!.areYouSure),
-                          content: Text(data[index]['subjectName'].toString()),
-                          actions: [
-                            OutlinedButton(onPressed: (){
-                              Navigator.pop(ctx);
-                            }, child: Text(localization!.cancel),),
-                            ElevatedButton(onPressed: ()async{
-                              bool deleteResult = await _viewModel.deleteSubject(data[index]['subjectID'].toString(), majorKey);
-                              if(deleteResult == true){
-                                Components.showSuccessToast(localization!.subjectDeleted);
-                                Navigator.pop(ctx);
-                                return;
-                              }if(deleteResult == false){
-                                Components.showSuccessToast(localization!.subjectDeleted);
-                                Navigator.pop(ctx);
-                                return;
-                              }
-                            }, child: Text(localization!.delete)),
-                          ],
-                        );
-                      },);
+                      showDialog(
+                        context: context,
+                        builder: (ctx) {
+                          return AlertDialog(
+                            title: Text(localization!.areYouSure),
+                            content: Text(data[index]['subjectName'].toString()),
+                            actions: [
+                              OutlinedButton(
+                                onPressed: () {
+                                  Navigator.pop(ctx);
+                                },
+                                child: Text(localization!.cancel),
+                              ),
+                              ElevatedButton(
+                                  onPressed: () async {
+                                    bool deleteResult = await _viewModel.deleteSubject(
+                                        data[index]['subjectID'].toString(), majorKey);
+                                    if (deleteResult == true) {
+                                      Components.showSuccessToast(localization!.subjectDeleted);
+                                      if (ctx.mounted) {
+                                        Navigator.pop(ctx);
+                                      }
+
+                                      return;
+                                    }
+                                    if (deleteResult == false) {
+                                      Components.showSuccessToast(localization!.subjectDeleted);
+                                      if (ctx.mounted) {
+                                        Navigator.pop(ctx);
+                                      }
+                                      return;
+                                    }
+                                  },
+                                  child: Text(localization!.delete)),
+                            ],
+                          );
+                        },
+                      );
                     },
-                    child:  Icon(Icons.delete_forever,color: CustomColors.redColor,),
+                    child: Icon(
+                      Icons.delete_forever,
+                      color: CustomColors.redColor,
+                    ),
                   ),
                 );
               },

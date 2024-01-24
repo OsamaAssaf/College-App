@@ -281,7 +281,9 @@ class _EditStudentsMarksViewState extends State<EditStudentsMarksView> {
                     provider.setIsSaveLoading(false);
                   } catch (e) {
                     provider.setIsSaveLoading(false);
-                    Components.errorDialog(context, e.toString());
+                    if (context.mounted) {
+                      Components.errorDialog(context, e.toString());
+                    }
                   }
                 },
           icon: provider.isSaveLoading
